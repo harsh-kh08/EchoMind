@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="images/brain-solid.svg" />
+    <title>Echomind</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/homepage.css">
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <div class="sidebar-title-section"></div>
+    </div>
+
+
+    <div class="chat-section">
+
+        <div class="header">
+
+            <img src="./images/bars-solid.svg" alt="Sidebar Icon">
+
+            <div class="heading"> EchoMind</div>
+
+            <!-- <img src="./images/brain-solid.svg" alt="company-logo"> -->
+
+        </div>
+
+
+
+        <div class="chat-display">
+
+            <% if(locals.question) { %>
+
+                <div class="chat-display-logo">
+
+
+                    <img src="images/brain-solid.svg" alt="company-logo">
+
+                    <p>Tell me what’s on your mind?</p>
+
+
+                </div>
+                <% } else {%>
+
+                    <div class="chat-display-conversation gradient-background">
+
+
+
+                        <div class="chat-display-conversation-prompt">
+
+                            <div class="question-grid">
+                                <div class="prompt-icon"><img src="./images/user-solid.svg" alt=""></div>
+                                <div class="prompt-user">You</div>
+                                <div class="prompt-question">
+                                    <p>
+                                        <%=questionPrompt%>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="chat-display-conversation-answer">
+
+
+                            <div class="question-grid">
+                                <div class="prompt-icon"><img src="./images/brain-solid.svg" alt=""></div>
+                                <div class="prompt-user">EchoMind</div>
+                                <div class="prompt-question">
+                                    <p>
+                                        <%=answerPrompt%>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+
+                    <% } %>
+
+
+        </div>
+
+
+
+
+
+        <div class="chat-input">
+
+            <div class="prompt-input-section">
+
+                <% if(locals.question) { %>
+
+
+
+                    <div class="prompt-section">
+                        <form action="/chat" method="post" id="one">
+                            <input type="hidden" name="question"
+                                value="<%=question[0].main_part%> <%=question[0].sub_part%>">
+                            <div class="prompt prompt-one one" data-delay="0.2s" role="button" type="submit">
+                                <div class="prompt-heading">
+                                    <%=question[0].main_part%>
+
+                                </div>
+
+                                <div class="prompt-submit"><img src="./images/circle-arrow-up-solid.svg" alt=""
+                                        height="20px">
+                                </div>
+
+
+                                <div class="prompt-description">
+
+                                    <%=question[0].sub_part%>
+                                </div>
+
+                            </div>
+                        </form>
+
+                        <form action="/chat" method="post" id="two">
+                            <input type="hidden" name="question"
+                                value="<%=question[1].main_part%> <%=question[1].sub_part%>">
+                            <div class="prompt prompt-two" data-delay="0.4s">
+
+                                <div class="prompt-heading">
+                                    <%=question[1].main_part%>
+                                </div>
+
+                                <div class="prompt-submit"><img src="./images/circle-arrow-up-solid.svg" alt=""
+                                        height="20px">
+                                </div>
+
+
+                                <div class="prompt-description">
+                                    <%=question[1].sub_part%>
+
+                                </div>
+
+
+                            </div>
+                        </form>
+
+
+                        <form action="/chat" method="post" id="three">
+                            <input type="hidden" name="question"
+                                value="<%=question[2].main_part%> <%=question[2].sub_part%>">
+
+                            <div class="prompt prompt-three" data-delay="0.6s">
+
+                                <div class="prompt-heading">
+                                    <%=question[2].main_part%>
+                                </div>
+
+                                <div class="prompt-submit"><img src="./images/circle-arrow-up-solid.svg" alt=""
+                                        height="20px">
+                                </div>
+
+
+                                <div class="prompt-description">
+                                    <%=question[2].sub_part%>
+
+                                </div>
+
+
+                            </div>
+                        </form>
+
+                        <form action="/chat" method="post" id="four">
+                            <input type="hidden" name="question"
+                                value="<%=question[3].main_part%> <%=question[3].sub_part%>">
+                            <div class="prompt prompt-four" data-delay="0.8s">
+
+                                <div class="prompt-heading">
+                                    <%=question[3].main_part%>
+                                </div>
+
+                                <div class="prompt-submit">
+                                    <img src="./images/circle-arrow-up-solid.svg" alt="" height="20px">
+                                </div>
+
+
+                                <div class="prompt-description">
+
+                                    <%=question[3].sub_part%>
+                                </div>
+
+
+                            </div>
+                        </form>
+                    </div>
+
+                    <% } %>
+
+
+
+                        <div class="text-input-warning">
+                            <p>Enter the Prompt</p>
+                        </div>
+
+
+
+                        <div class="input-box">
+
+
+                            <textarea name="question" id="prompt-id" cols="30" rows="10"
+                                placeholder="Echo your idea here" form="prompt"></textarea>
+
+
+                            <form id="prompt" action="/chat" method="post">
+
+                                <div class="submit-button" role="button" type="submit">
+
+                                    <img src="./images/circle-arrow-up-solid.svg" alt="Arrow-image">
+                                </div>
+                            </form>
+
+                        </div>
+
+            </div>
+
+
+
+        </div>
+
+
+        <div class="footer">
+
+            <p>Echomind may display inaccurate info, including about people, so double-check its responses</p>
+
+        </div>
+
+    </div>
+
+
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="js/homepage.js"></script>
+</body>
+
+</html>
